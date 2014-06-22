@@ -11,7 +11,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
+
   config.vm.provision :shell, path: "bootstrap.sh"
+
+  config.vm.provision :file do |file|
+    file.source      = 'Dockerfile'
+    file.destination = '/home/vagrant/workspace/Dockerfile'
+  end
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
